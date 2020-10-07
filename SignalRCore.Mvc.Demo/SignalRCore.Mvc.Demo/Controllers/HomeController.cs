@@ -29,6 +29,7 @@ namespace SignalRCore.Mvc.Demo.Controllers
 
         public async Task<IActionResult> Privacy()
         {
+            
             await _weatherHubContext
                 .Clients
                 .All
