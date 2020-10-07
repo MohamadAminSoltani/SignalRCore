@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SignalRCore.Mvc.Demo.Hubs;
 
 namespace SignalRCore.Mvc.Demo
 {
@@ -24,6 +25,7 @@ namespace SignalRCore.Mvc.Demo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +50,7 @@ namespace SignalRCore.Mvc.Demo
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapHub<WeatherHub>("/weatherHub");
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
